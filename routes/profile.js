@@ -3,7 +3,7 @@ const router = express.Router();
 const { getMaps, getUserFavoriteMaps, getUserMaps, getUserContributionMaps } = require('../db/queries/maps');
 
 router.get('/', (req, res) => {
-  const userId = req.params.id;
+  const userId = 2;
   // Using Promise.all to fetch all data concurrently
   Promise.all([
     getUserFavoriteMaps(userId),
