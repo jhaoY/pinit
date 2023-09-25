@@ -16,10 +16,17 @@ const getUserMaps = (id) => {
   const queryText = `
   SELECT * 
   FROM maps
-  WHERE user_id = $1;
+  WHERE created_by = $1;
   `;
 
   return db.query(queryText, [id])
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => {
+      console.error(err);
+      throw err;
+    })
 }
 
 const getUserFavoriteMaps = (id) => {
