@@ -33,6 +33,8 @@ const getUserFavoriteMaps = (id) => {
   const queryText = `
   SELECT * 
   FROM favorites
+  JOIN users ON users.id = user_id
+  JOIN maps ON maps.id = map_id
   WHERE user_id = $1;
   `;
 
@@ -50,6 +52,8 @@ const getUserContributionMaps = (id) => {
   const queryText = `
   SELECT *
   FROM contributions
+  JOIN users ON users.id = user_id
+  JOIN maps ON maps.id = map_id
   WHERE user_id = $1;
   `;
 
