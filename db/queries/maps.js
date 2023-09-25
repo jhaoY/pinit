@@ -63,4 +63,7 @@ const getUserContributionMaps = (id) => {
     })
 };
 
-module.export = { getMaps, getUserFavoriteMaps, getUserMaps, getUserContributionMaps }
+module.exports = { getMaps, 
+  getUserFavoriteMaps, 
+  getUserMaps, 
+  getUserContributionMaps }
