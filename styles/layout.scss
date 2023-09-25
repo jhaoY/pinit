@@ -2,5 +2,37 @@
 
 body,
 html {
+  box-sizing: border-box;
   margin: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+
+.map {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  width: 80%;
+  margin: 10px;
+}
+
+.profile-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.description {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end ;
 }
