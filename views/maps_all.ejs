@@ -21,12 +21,14 @@
   <header>
     <h1>All Maps</h1>
   </header>
-  <div class = map>
-    <h3>Map Title</h3>
-    <p class = cover_pic><img href=""></p>
-    <p class = description>Map description</p>
-    <p class = icons>favourite icon with counter</p>
-  </div>
+  <% for (let i = 0; i <3; i++) { %>
+  <table class = map >
+    <td class = cover_pic><img href=""> :) </td>
+    <td><h3>Map Title</h3></td>
+    <td class = description>Map description</td>
+    <td class = icons>"Favourite" icon with counter</td>
+  </table>
+<%}%>
 </body>
 
 </html>
