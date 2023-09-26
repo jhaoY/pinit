@@ -23,6 +23,8 @@
     <ul class="favorite-maps-list">
         <% favorites.forEach(map => { %>
             <li class="map-list"><%= map.title %>
+              <img class="map-coverURL" src="<%= map.coverurl %>" alt="Cover image for <%= map.title %>">
+              <p class="map-description"><%= map.description %></p>
               <div class="user-map-actions">
                 <a href="/maps/<%= map.id %>/edit">
                   <button type="submit" class="edit-button">Edit</button>
