@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Profile</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/profile.css">
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+</head>
+
+<body>
+  <%- include('partials/_header.ejs') %>
+  <article class="profile-list">
+    <h2>Favorites</h2>
+    <ul class="favorite-maps-list">
+        <% favorites.forEach(map => { %>
+            <li class="map-list"><%= map.title %>
+              <div class="user-map-actions">
+                <a href="/maps/<%= map.id %>/edit">
+                  <button type="submit" class="edit-button">Edit</button>
+                </a>
+                <form action="/maps/favorite" method="post">
+                  <input type="hidden" name="mapId" value="<%= map.id %>">
+                  <button type="submit" class="favorite-button">Favorite</button>
+                </form>
+                <form action="/maps/delete" method="post">
+                  <input type="hidden" name="mapId" value="<%= map.id %>">
+                  <button type="submit" class="delete-button">Delete</button>
+                </form>
+              </div>
+            </li>
+        <% }); %>
+    </ul>
+  
+    <h2>User Maps</h2>
+    <ul class="user-maps-list">
+        <% userMaps.forEach(map => { %>
+            <li class="map-list"><%= map.title %>
+              <div class="user-map-actions">
+                <a href="/maps/<%= map.id %>/edit">
+                  <button type="submit" class="edit-button">Edit</button>
+                </a>
+                <form action="/maps/favorite" method="post">
+                  <input type="hidden" name="mapId" value="<%= map.id %>">
+                  <button type="submit" class="favorite-button">Favorite</button>
+                </form>
+                <form action="/maps/delete" method="post">
+                  <input type="hidden" name="mapId" value="<%= map.id %>">
+                  <button type="submit" class="delete-button">Delete</button>
+                </form>
+              </div>
+            </li>
+        <% }); %>
+    </ul>
+  
+    <h2>Contributions</h2>
+    <ul class="contributed-maps-list">
+        <% contributions.forEach(map => { %>
+            <li class="map-list"><%= map.title %>
+              <div class="user-map-actions">
+                <a href="/maps/<%= map.id %>/edit">
+                  <button type="submit" class="edit-button">Edit</button>
+                </a>
+                <form action="/maps/favorite" method="post">
+                  <input type="hidden" name="mapId" value="<%= map.id %>">
+                  <button type="submit" class="favorite-button">Favorite</button>
+                </form>
+                <form action="/maps/delete" method="post">
+                  <input type="hidden" name="mapId" value="<%= map.id %>">
+                  <button type="submit" class="delete-button">Delete</button>
+                </form>
+              </div>
+            </li>
+        <% }); %>
+    </ul>
+  </article>
+</body>
+
+</html>
