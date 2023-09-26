@@ -29,21 +29,22 @@
 
 <body>
   <%- include('partials/_header') %>
-  <article class = picture>
-    <img src = "https://img.freepik.com/free-photo/3d-rendering-planet-earth_23-2150498436.jpg?size=626&ext=jpg">
-  </article>
-  <div>
-    <% for (let i = 0; i < 3; i++) { %>
-    <article class="sample-maps">
-      <img src="<%= map[i].coverURL %>">
+    <article class = picture>
+      <img src = "https://img.freepik.com/free-photo/3d-rendering-planet-earth_23-2150498436.jpg?size=626&ext=jpg" href="map/all">
+    </article>
+  <div class = sample_maps>
+    <article>
+      <img class = sample_maps_pics src="<%= maps[0].coverurl %>">
+      <p><%= maps[0].title %></p>
     </article>
     <article>
-      <img src="<%= map[i].coverURL %>">
+      <img class = sample_maps_pics src="<%= maps[1].coverurl %>">
+      <p><%= maps[1].title %></p>
     </article>
     <article>
-      <img src="<%= map[i].coverURL %>">
+      <img class = sample_maps_pics src="<%= maps[2].coverurl %>">
+      <p><%= maps[2].title %></p>
     </article>
-    <% } %>
   </div>
 </body>
 
