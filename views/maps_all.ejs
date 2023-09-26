@@ -15,25 +15,41 @@
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+
+  <!-- Font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
   <%- include('partials/_header') %>
-  <header>
-    <h1>All Maps</h1>
-  </header>
-  <% for (let i = 0; i <3; i++) { %>
-  <article class = map >
-    <header class = profile-title>
-      <p class = cover_pic><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHMAzAMBIgACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAAAwQFBgcCAf/EADYQAAEEAQMBBgQCCgMAAAAAAAEAAgMRBAUSITEGEyJBUWFxgZHwMrEHFBUjM0OhwdHhJEJS/8QAGgEBAAMBAQEAAAAAAAAAAAAAAAMEBQIBBv/EACMRAAICAQQBBQEAAAAAAAAAAAABAgMRBBIhMTMFEyIyQVH/2gAMAwEAAhEDEQA/APYURFYM4IiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgK2oSOZCGsNOeaseQVDFnkxnbi9z4j+Jrjde4U+qnpxYaLpVYZQ5gcAQD5eip2t7+Pw0qIL2ln9Nprg5oc02D0K/VQwp2h/dE8dWq+eFYrsU45KVtTrlgIiKQiCIq0shkf3bD4R1PquJzUESV1ux4RYBBujdL9UUDQAeOVKvYS3LIsgoSwgiIuiMIiIAiIgCIiAIiIAiIgCIiAIiICln1XlZb0WEMl0cuxpYeeWl3P5/2WhreTBjahhd8/Y6QOa23VfT68kLge1GttwMlrf5uQ8ho30GNANuPw4WfdL5PBsaaOa0dBq2rDDhDmMe+eR22KFnJc72r76LEzNY7RRwGeSDJaOpjfiyAD68/Nc/m6tkxy6TmR97IxuQCHSdQQ8G/cEAc+xXtjzJwQOCOi8rqTWWTzkocYOV7MdosjUWsinIbOW25oNivb4ei1oM/JyHRsvZJvc19ihx0PwWZ2shlbqGgZOM1wf8Arpjk28FzHRuuz8r+ShzGSY+T+uxMdvEsbXAEkBrvDx9QoL3KuSjF8MQhXPLaNrK1U47HNypoIQ3h5cdp+Cl0rUMLOsYmXBMR1EbwSPkuV13sjq+Zny5jdQhL3imtc5zQ0enA+qoY+j6nozI5M98VB4bHJjyElp8qsAgqxCE+5PJyq68YiemgUv1U9KyX5WG10tGVnheRwHeh+YIKuK9D6mPbne8hERdEQREQBERAEREAREQBERAEREAREQHHfpA7n/iSy3ui3Flepr/C8t1IZOXmyTOgdLtby5vIC6ftrqw1HXRA15EURo+fA/2q+iSSQQZMu9kW5u5ge6uL44WBbPddKX4fTaeDqoin2cnDPMAIp98uNdEAVtPkR6EH8z6r2rTO22iZuLC0ZcjZtgDo3Y8m6/kCD8lw02FkSObPl4mJHvN96yzXvtHmukw9H2Bpw5Aw1y57TR9w1TRusjxFHNqrl9mSdp+0Uu1seNiydyx24yvbRNg8NHlx1PXml96dFlZ2EZgDUrBwf6Fa405uXjSY2bG+WN427q2lo9ivnAwZtMyZMcZrsjHlI7gPDbiocjgC/VcSostlumxG2uMNsVyamHK3MxmSNNOBp7T1a7zCxO28Vdmcp4rdE5kgN1VOHK1czBfFj3jzujyT/ObQs/kR7FZLf2rkZBwtSnxmxOFnZB/E59yrPv7FtkuSuq9z3Jn32bkdlZG9pka2GNhkAPhL3N4afcDn5tXSLL0DEiw8WWGHlvfvcT5kk2SfdaivUvMEzL1TbtYREUpXCIiAIiIAiIgCIiAIiIAiIgChy391jSyf+WEqZfjm72ubV2KK8lnHB1Hs8B1drjmvma/a58nW+trrMfGb3MRaA19sAMhNBvA+pr3VU4jP2m6KnSzscaFce330+KmdFNDlHL1GJ2RIBUcTaoD8vvzXzy7wz6eTyuDa1GnsD3QukYwUXO8MY+v+CvvTNahBbA2R7xYaG8RsH9/voFQgmkzzumPA/CwuoD7+6Uhw4DK0lm01z6lW4v8AUU5fxnUHUGCm0HPfy1rTdqGaPUHGPIhDbjN9yfMH39VBp8cMQBYRvIs1zS3sSRpBN9ArK5Id23oYeUyeEPAdtcOb5+oUesS7I45Gx76e0EtHLf8ASnjx4mSF7TwTYWVqeb3lNjkP4+rR+GvIqO6SjB5Oq1mRoaY0NkyGtN+IO46chXlQ0sue2R8jdjnEdFfVnS+JGfq/KwiIrJWCIiAIiIAiIgCIiAIiIAiIgCrajlx4OHLkyuDWxtJslWV5x+kTVMjLyP2ZjnbFGLNWS8qDUXKqGWWdLp3fZtRkafmNdK8m3SyHc/4k9F0uJAMqMnbtoVYN8+fK4jR4++Ia534OoAXRYEuThuD2iV8d8C+K9OPvlYcZ85N+cFjBvDS4gHXWzkUAvlmH4iBYA5rrSuY2oC42zMF9KHPJHH37rQjMAL3FvPwVtOL6Kj3Lsxm4cg8YDgfJS4bs0S7Xs8PnS2mcgU3hw5sdFFZNtdtDvItC6bx0zxck0MUkjKkdt+CSwwwbnNDQ4/i46qk8ZPVsrh7EWFQ1HNdBGDNkDd0Pt8lFZbFLlHcK23wzf0t7XQvrinchXFzfZ7vzK2TlkJB4cfEfiukWho7PcqTwZmtr2WtZCIitlMIiIAiIgCIiAIiIAiIgCIiA/CaBPovMNVdG7J/W3OBjMpa7pfWl3faXP/Z+kTSNPjcNrfiV51psuK9zsGZ7/H0e6SwD6ALJ9SkniJr+mRaTsJsvRDA7v8X+A7njkD14pWMHCa57b3ON7gA/j+n+l94WZJixnHyw50YNAkHot2BmG+Bu5o549OVmxTfRpyljs/MbA2lpsAG7BPIWzBEd7weeGgFZ7Iw1jnNkBN7QB+S0oMgggcC2181YrwuyvPLLkTLDXNHNL4mY5oLiOi+MfJ8brd1o0p3Sh7TRv2VxbZLgrfKLMeSSaR/dwtcPVzv7KLI02IxgysLiObJ5tahmjhFkUPPjos/JyZss/uRUYPUjqqlkIL7PLLEZSzxwiXBeB3YohoHFrZ9Fiwd02MMl4vqFqY0m5pa7q338lf0Mko7TP10XncTIiLQM4IiIAiIgCIiAIiIAiIgCIiHpyvbcCQ4cT+WOcSW31XC537iSN0QDXV1pEWHrfMfQaDwHVNcZ9LZJLTn7epAVQPdD4IjtbdUPgSiKpPss19E+LNIGAB5oQ2PitCOaQAEPNgivoURV22SNIu73N7pwJBulrwtBDXEcmuURXtN2yncUsmJkk3jF8qyxjRCKaERSxXyZG+ipmxM7jdXi9VNguJyRZ/6hETS+c51PgNNERbhhhERAEREAREQBERAEREB//9k="></p>
-      <p class = map-title><h3>Map Title</h3></p>
+
+    <header>
+      <h1>All Maps</h1>
     </header>
-    <p class = description>Map description: Best bowling alleys in the city for you bowling aficionados out there</p>
-    <footer class = icons>
-      <p class>icon:"Favourite"</p>
-    </footer>
-  </article>
-<%}%>
+    <% maps.forEach(map => {%>
+
+      <article class = map >
+      <header class = profile-title>
+        <p class = cover_pic><%= maps.coverURL %></p>
+        <p class = map-title><h3><%= map.title %></h3></p>
+      </header>
+      <p class = description><%= map.description %></p>
+      <footer class = icons>
+        <form action="/maps/favorite" method="post">
+          <input type="hidden" name="mapId" value="<%= map.id %>">
+          <button type="submit" class="favorite-button">Favorite</button>
+        </form>
+      </footer>
+      </article>
+
+<%});%>
 </body>
 
 </html>
