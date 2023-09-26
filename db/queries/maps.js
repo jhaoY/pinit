@@ -111,6 +111,16 @@ const updateMap = (mapDetails) => {
   return db.query(queryText, [mapDetails.id, mapDetails.title, mapDetails.description, mapDetails.location]);
 }
 
+const favoriteMap = (userId, mapId) => {
+  const queryText = `
+    INSERT INTO favorites (user_id, map_id)
+    VALUES ($1, $2)
+    RETURNING map_id;
+  `;
+
+  return db.query(queryText, [userId, mapId]);
+}
+
 module.exports = {
   getMaps,
   getUserMaps,
@@ -118,5 +128,6 @@ module.exports = {
   getUserFavoriteMaps,
   getUserContributionMaps,
   isMapFavoritedByUser,
-  updateMap
+  updateMap,
+  favoriteMap
 }
