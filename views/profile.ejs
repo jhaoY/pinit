@@ -37,13 +37,9 @@
               <img class="map-coverURL" src="<%= map.coverurl %>" alt="Cover image for <%= map.title %>">
               <p class="map-description"><%= map.description %></p>
               <div class="user-map-actions">
-                <a href="/maps/<%= map.id %>/edit">
+                <a href="/map/<%= map.id %>/edit">
                   <button type="submit" class="edit-button">Edit</button>
                 </a>
-                <form action="/maps/favorite" method="post">
-                  <input type="hidden" name="mapId" value="<%= map.id %>">
-                  <button type="submit" class="favorite-button">Favorite</button>
-                </form>
               </div>
             </li>
         <% }); %>
@@ -56,10 +52,10 @@
             <img class="map-coverURL" src="<%= map.coverurl %>" alt="Cover image for <%= map.title %>">
             <p class="map-description"><%= map.description %></p>
             <div class="user-map-actions">
-              <a href="/maps/<%= map.id %>/edit">
+              <a href="/map/<%= map.id %>/edit">
                 <button type="submit" class="edit-button">Edit</button>
               </a>
-              <form action="/maps/favorite" method="post">
+              <form action="/profile/<%= map.id %>/favoriteMap" method="post">
                 <input type="hidden" name="mapId" value="<%= map.id %>">
                 <button type="submit" class="favorite-button">Favorite</button>
               </form>
@@ -75,10 +71,10 @@
             <img class="map-coverURL" src="<%= map.coverurl %>" alt="Cover image for <%= map.title %>">
             <p class="map-description"><%= map.description %></p>
             <div class="user-map-actions">
-              <a href="/maps/<%= map.id %>/edit">
+              <a href="/map/<%= map.id %>/edit">
                 <button type="submit" class="edit-button">Edit</button>
               </a>
-              <form action="/maps/favorite" method="post">
+              <form action="/map/favorite" method="post">
                 <input type="hidden" name="mapId" value="<%= map.id %>">
                 <button type="submit" class="favorite-button">Favorite</button>
               </form>
@@ -88,5 +84,4 @@
     </ul>
   </article>
 </body>
-
       </html>
