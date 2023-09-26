@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Profile</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/profile.css">
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+
+  <!-- Font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+  <article class = picture>
+    <img src = "https://img.freepik.com/free-photo/3d-rendering-planet-earth_23-2150498436.jpg?size=626&ext=jpg">
+  </article>
+  <div>
+    <% for (let i = 0; i < 3; i++) { %>
+    <article class="sample-maps">
+      <img src="<%= map[i].coverURL %>">
+    </article>
+    <article>
+      <img src="<%= map[i].coverURL %>">
+    </article>
+    <article>
+      <img src="<%= map[i].coverURL %>">
+    </article>
+    <% } %>
+  </div>
+</body>
+
+</html>
