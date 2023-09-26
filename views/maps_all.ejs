@@ -37,8 +37,8 @@
 
       <article class = map >
       <header class = profile-title>
-        <p class = cover_pic><%= map.coverURL %></p>
-        <p class = map-title><h3><%= map.title %></h3></p>
+        <p class = cover_pic><img src ="<%= map.coverurl %>"></p>
+        <p class = map-title><a href="/maps/<%= map.id %>"><h3><%= map.title %></h3></a></p>
       </header>
       <p class = description><%= map.description %></p>
       <footer class = icons>
