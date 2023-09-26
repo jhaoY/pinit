@@ -34,13 +34,31 @@ router.get('/:mapId/edit', (req, res) => {
     })
 })
 
+router.post('/:mapId/favorite', (req, res) => {
+  const userId = 1;
+  const mapId = 1;
+
+  mapQueries.favoriteMap(userId, mapId)
+    .then(data => {
+      res.redirect(`/profile`)
+    })
+    .catch(err => {
+      console.error(err)
+      res.status(500).send("Server error");
+    })
+})
+
 router.post('/:mapId/update', (req, res) => {
   const mapId = 1;
   const { title, description, location } = req.body;
 
   mapQueries.updateMap({ id: mapId, title, description, location })
-    .then(result => {
+    .then(data => {
       res.redirect(`/maps/${mapId}`)
+    })
+    .catch(err => {
+      console.error(err)
+      res.status(500).send("Server error");
     })
 })
 
