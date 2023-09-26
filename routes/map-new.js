@@ -1,8 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-/*---------"/map/new"------------*/
-app.get('/map/new', (req, res) => {
+router.get('/', (req, res) => {
   res.render('map_new');
 });
 
