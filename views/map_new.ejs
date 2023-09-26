@@ -33,6 +33,7 @@
 
 <body>
   <%- include("partials/_header") %>
+  <div class="test">
   <h1>Create New Map</h1>
   <div id="map" style="height: 400px;"></div>
   <form id="mapForm" enctype="multipart/form-data">
@@ -51,6 +52,7 @@
     <button type="button" onclick="getLocation()">Submit</button><br><br>
     <input type="submit" value="Done">
   </form>
+</div>
 
   <script>
     // Function to initialize the Leaflet map
@@ -90,7 +92,6 @@
     document.getElementById("mapForm").addEventListener("submit", function (event) {
       event.preventDefault(); // Prevent form submission
     });
-
   </script>
 </body>
 
