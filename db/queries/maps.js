@@ -14,10 +14,10 @@ const getMaps = () => {
 
 const getUserMaps = (id) => {
   const queryText = `
-  SELECT * 
-  FROM maps
-  WHERE created_by = $1;
-  `;
+    SELECT * 
+    FROM maps
+    WHERE created_by = $1;
+    `;
 
   return db.query(queryText, [id])
     .then(data => {
@@ -31,12 +31,12 @@ const getUserMaps = (id) => {
 
 const getUserFavoriteMaps = (id) => {
   const queryText = `
-  SELECT * 
-  FROM favorites
-  JOIN users ON users.id = user_id
-  JOIN maps ON maps.id = map_id
-  WHERE user_id = $1;
-  `;
+    SELECT * 
+    FROM favorites
+    JOIN users ON users.id = user_id
+    JOIN maps ON maps.id = map_id
+    WHERE user_id = $1;
+    `;
 
   return db.query(queryText, [id])
     .then(data => {
@@ -50,12 +50,12 @@ const getUserFavoriteMaps = (id) => {
 
 const getUserContributionMaps = (id) => {
   const queryText = `
-  SELECT *
-  FROM contributions
-  JOIN users ON users.id = user_id
-  JOIN maps ON maps.id = map_id
-  WHERE user_id = $1;
-  `;
+    SELECT *
+    FROM contributions
+    JOIN users ON users.id = user_id
+    JOIN maps ON maps.id = map_id
+    WHERE user_id = $1;
+    `;
 
   return db.query(queryText, [id])
     .then(data => {
