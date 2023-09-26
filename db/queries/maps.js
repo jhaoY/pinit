@@ -67,7 +67,24 @@ const getUserContributionMaps = (id) => {
     })
 };
 
+const isMapFavoritedByUser = (userId, mapId) => {
+  const queryText = `
+    SELECT EXISTS (
+      SELECT 1 FROM favorites 
+      WHERE user_id = $1 AND map_id = $2
+    );
+  `;
+
+  return db.query(queryText, [userId, mapId])
+    .then(res => res.rows[0].exists)
+    .catch(err => {
+      console.error(err);
+      throw err;
+    });
+};
+
 module.exports = { getMaps, 
   getUserFavoriteMaps, 
   getUserMaps, 
-  getUserContributionMaps }
+  getUserContributionMaps,
+  isMapFavoritedByUser }
