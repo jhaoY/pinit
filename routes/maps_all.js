@@ -1,18 +1,18 @@
 const express = require('express');
 const router  = express.Router();
-const { getMaps } = require('../db/queries/maps');
-
-router.get('/', (req, res) => {
-  res.render('maps_all');
-});
+const { getMaps, getUserFavoriteMaps, getUserMaps, getUserContributionMaps } = require('../db/queries/maps');
 
 router.get('/', (req, res) => {
   const userId = 1;
-  Promise.all(
-  getMaps(userId)
-  )
-    .then((maps) => {
-      res.render('profile', { maps });
+  // Using Promise.all to fetch all data concurrently
+  Promise.all([
+    getUserFavoriteMaps(userId),
+    getUserMaps(userId),
+    getUserContributionMaps(userId),
+    getMaps(userId)
+  ])
+    .then(([favorites, userMaps, contributions, maps]) => {
+      res.render('maps_all', { favorites, userMaps, contributions, maps });
     })
     .catch(err => {
       console.error(err);
