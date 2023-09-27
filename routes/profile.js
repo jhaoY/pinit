@@ -20,8 +20,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/:mapId/favoriteMap', (req, res) => {
-  const userId = 1;
-  const mapId = 1;
+  const userId = req.cookies['user_id']
+  const mapId = req.body.mapId;
 
   mapQueries.favoriteMap(userId, mapId)
     .then(data => {

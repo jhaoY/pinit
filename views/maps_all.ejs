@@ -42,10 +42,15 @@
       </header>
       <p class = description><%= map.description %></p>
       <footer class = icons>
-        <form action="/map/favorite" method="post">
+        <% if (user_id) { %>
+        <a href="/map/<%= map.id %>/edit">
+          <button type="submit" class="edit-button">Edit</button>
+        </a>
+        <form action="/profile/<%= map.id %>/favoriteMap" method="post">
           <input type="hidden" name="mapId" value="<%= map.id %>">
           <button type="submit" class="favorite-button">Favorite</button>
         </form>
+        <% } %>
       </footer>
       </article>
 

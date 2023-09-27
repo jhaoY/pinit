@@ -12,7 +12,7 @@ router.get('/all', (req, res) => {
     mapQueries.getMaps(userId)
   ])
     .then(([favorites, userMaps, contributions, maps]) => {
-      res.render('maps_all', { favorites, userMaps, contributions, maps });
+      res.render('maps_all', { favorites, userMaps, contributions, maps, user_id: req.cookies["user_id"] });
     })
     .catch(err => {
       console.error(err);
