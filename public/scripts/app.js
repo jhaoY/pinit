@@ -7,13 +7,14 @@ $(document).ready(function () {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
-    L.marker([43.651070, -79.347015]).addTo(map)
-    // .bindPopup().openPopup();
   }
 
   const moveMap = (latitude, longitude) => {
     map.panTo(new L.LatLng(latitude, longitude), 13);
+  }
+
+  const createPin = (latitude, longitude) => {
+    L.marker([latitude, longitude]).addTo(map)
   }
 
   const getLocation = () => {
