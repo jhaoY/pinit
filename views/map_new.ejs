@@ -35,7 +35,7 @@
     <h1>Create New Map</h1>
   <div id="map" style="height: 400px;"></div>
   <div class="test">
-  <form id="mapForm" enctype="multipart/form-data">
+  <form id="mapForm" method="POST" action="/map/new" enctype="multipart/form-data">
     <label for="mapImage">Image:</label>
     <input type="file" id="mapImage" accept="image/*" href=""><br><br>
 
@@ -45,7 +45,7 @@
     <label for="description">Description:</label>
     <textarea id="description" name="description"></textarea><br><br>
 
-    <label for="city">City:</label>
+    <label for="city">City/Address:</label>
     <input type="text" id="city" name="city" required><br><br>
 
     <button type="button" onclick="getLocation()">Submit</button><br><br>
@@ -67,8 +67,8 @@
     }
 
     const getLocation = () => {
-      const city = document.getElementById('city').value;
-      const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(city)}&format=json`;
+      const info = document.getElementById('city').value;
+      const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(info)}&format=json`;
 
       fetch(apiUrl)
         .then(response => response.json())
