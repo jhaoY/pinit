@@ -48,8 +48,8 @@
     <label for="city">City/Address:</label>
     <input type="text" id="city" name="city" required><br><br>
 
-    <button type="button" onclick="getLocation()">Submit</button><br><br>
-    <input type="submit" value="Done">
+    <button type="button" onclick="getLocation()">Update</button><br><br>
+    <button type="submit">Submit</button>
   </form>
 </div>
 
@@ -89,7 +89,6 @@
     }
 
     document.getElementById("mapForm").addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent form submission
     });
   </script>
 </body>
