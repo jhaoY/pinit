@@ -46,6 +46,23 @@ const getMapByMapId = (id) => {
     })
 }
 
+const getLocationByMapId = (id) => {
+  const queryText = `
+  SELECT location
+  FROM maps
+  WHERE id = $1;
+  `;
+
+  return db.query(queryText, [id])
+  .then(data => {
+    return data.rows;
+  })
+  .catch(err => {
+    console.err(err);
+    throw err;
+  })
+}
+
 const getUserFavoriteMaps = (id) => {
   const queryText = `
     SELECT * 
@@ -124,6 +141,7 @@ module.exports = {
   getMaps,
   getUserMaps,
   getMapByMapId,
+  getLocationByMapId,
   getUserFavoriteMaps,
   getUserContributionMaps,
   isMapFavoritedByUser,
