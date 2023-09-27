@@ -39,6 +39,8 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
   console.log(req.body)
+  const mapDetails = req.body;
+  mapQueries.createMap(mapDetails)
 });
 
 module.exports = router;
