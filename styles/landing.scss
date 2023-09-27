@@ -1,0 +1,33 @@
+.picture {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 50px;
+  margin-bottom: 100px;
+}
+
+.each_map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  border-style: solid;
+}
+
+.sample_maps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.sample_maps_pics {
+  display: flex;
+  width: 160px;
+  height: 192px;
+}
+
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
