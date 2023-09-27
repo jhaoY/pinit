@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
   <head>
     <title>Create New Map</title>
-    
+
     <meta charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    
+
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
     <link rel="stylesheet" href="/vendor/border-box.css" />
     <link rel="stylesheet" href="/styles/main.css" />
-    
+
     <script src="/vendor/jquery-3.0.0.js"></script>
     <script defer src="/scripts/users.js"></script>
     <script src="/scripts/app.js"></script>
-    
+
     <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
@@ -36,7 +36,7 @@
     <h1>Create New Map</h1>
   <div id="map" style="height: 400px;"></div>
   <div class="test">
-  <form id="mapForm" method="POST" action="/map/new" enctype="multipart/form-data">
+  <form id="mapForm" method="POST" action="/map/new">
     <label for="mapImage">Image:</label>
     <input type="file" id="mapImage" accept="image/*" href=""><br><br>
 
