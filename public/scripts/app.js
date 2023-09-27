@@ -2,7 +2,7 @@ $(document).ready(function () {
   let map;
 
   const initMap = (latitude, longitude) => {
-    map = L.map('map').setView([43.651070, -79.347015], 13);
+    map = L.map('map').setView([latitude, longitude], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -43,5 +43,5 @@ $(document).ready(function () {
   })
 
   // Call function to show default location
-  initMap();
+  initMap(43.6532, -79.3832);
 })
