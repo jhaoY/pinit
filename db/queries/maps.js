@@ -114,8 +114,7 @@ const updateMap = (mapDetails) => {
 const favoriteMap = (userId, mapId) => {
   const queryText = `
     INSERT INTO favorites (user_id, map_id)
-    VALUES ($1, $2)
-    RETURNING map_id;
+    VALUES ($1, $2);
   `;
 
   return db.query(queryText, [userId, mapId]);
