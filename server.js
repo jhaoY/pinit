@@ -42,8 +42,8 @@ const newMap = require('./routes/map-new');
 app.use('/maps/all', mapsAllUsers);
 app.use('/profile', profileRoutes);
 app.use('/', landingRoutes);
-app.use('/profile', profileRoutes)
-app.use('/map/new', newMap)
+app.use('/profile', profileRoutes);
+app.use('/map/new', newMap);
 // Note: mount other resources here, using the same pattern above
 
 app.get('/login/:id', (req, res) => {
