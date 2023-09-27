@@ -19,19 +19,6 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:mapId/edit', (req, res) => {
-  const mapId = 1;
-  mapQueries.getMapByMapId(mapId)
-    .then(data => {
-      const map = data.rows[0];
-      res.render('edit_map', { map }); //placeholder render
-    })
-    .catch(err => {
-      console.error(err)
-      res.status(500).send("Server error");
-    })
-})
-
 router.post('/:mapId/favoriteMap', (req, res) => {
   const userId = 1;
   const mapId = 1;
