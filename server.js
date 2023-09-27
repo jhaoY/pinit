@@ -32,6 +32,7 @@ app.use(express.static('public'));
 const profileRoutes = require('./routes/profile');
 
 const mapsAllUsers = require('./routes/maps_all');
+const landingRoutes = require('./routes/landing');
 
 const newMap = require('./routes/map-new');
 // Mount all resource routes
@@ -39,6 +40,8 @@ const newMap = require('./routes/map-new');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
 app.use('/maps/all', mapsAllUsers);
+app.use('/profile', profileRoutes);
+app.use('/', landingRoutes);
 app.use('/profile', profileRoutes)
 app.use('/map/new', newMap)
 // Note: mount other resources here, using the same pattern above
