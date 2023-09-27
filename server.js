@@ -6,6 +6,7 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -41,6 +42,11 @@ app.use('/maps/all', mapsAllUsers);
 app.use('/profile', profileRoutes)
 app.use('/map/new', newMap)
 // Note: mount other resources here, using the same pattern above
+
+app.get('/login/:id', (req, res) => {
+  res.cookie("user_id", req.params.id)
+  res.redirect("/");
+});
 
 // Home page
 // Warning: avoid creating more routes in this file!
