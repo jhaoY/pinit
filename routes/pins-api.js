@@ -21,4 +21,11 @@ router.post('/add/:mapId', (req, res) => {
   pinQueries.addPin(pinDetails);
 })
 
+router.post('/update/:pinId', (req, res) => {
+  const pinId = req.params.pinId;
+  const { title, description, coverURL } = req.body;
+
+  pinQueries.updatePinDetails(pinId, title, description, coverURL);
+});
+
 module.exports = router;
