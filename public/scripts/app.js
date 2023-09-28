@@ -1,13 +1,8 @@
 $(document).ready(function () {
-  let map;
-
-  const initMap = (latitude, longitude) => {
-    map = L.map('map').setView([43.6532, -79.3832], 13);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-  }
+  let map = L.map('map').setView([43.6532, -79.3832], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 
   const getLocation = () => {
     const info = document.getElementById('location').value;
@@ -34,7 +29,4 @@ $(document).ready(function () {
   $('#updateLocationBtn').on('click', function () {
     getLocation();
   })
-
-  // Call function to show location
-  initMap();
 })
