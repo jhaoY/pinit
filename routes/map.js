@@ -34,11 +34,13 @@ router.get('/:mapId/edit', (req, res) => {
 })
 
 router.get('/new', (req, res) => {
-  res.render('map_new');
+  const templateVars = 'https://cdn.pixabay.com/photo/2020/06/05/01/28/compass-5261062_1280.jpg'
+  res.render('map_new', { coverURL: templateVars });
 });
 
 router.post('/new', (req, res) => {
-  console.log(req.body)
+  const mapDetails = req.body;
+  mapQueries.createMap(mapDetails)
 });
 
 module.exports = router;
