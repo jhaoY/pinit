@@ -30,11 +30,28 @@ const editPin = (pinDetails) => {
 
 const addPin = (pinDetails) => {
   const queryText = `
-  INSERT INTO pins (title, description, address)
-  VALUES ($1, $2, $3);
+  INSERT INTO pins (title, description, lat, lng, map_id)
+  VALUES ($1, $2, $3, $4, $5);
   `;
 
-  return db.query(queryText, [pinDetails.title, pinDetails.description, pinDetails.address])
+  return db.query(queryText, [pinDetails.title, pinDetails.description, pinDetails.lat, pinDetails.lng, pinDetails.map_id])
+}
+
+const updatePinLocation = (pinId, newLatLng) => {
+  const queryText = `
+    UPDATE pins
+    SET lat = $1, lng = $2
+    WHERE id = $3;
+  `;
+
+  return db.query(queryText, [newLatLng.lat, newLatLng.lng, pinId])
+    .then(data => {
+      return data.rowCount; // returns the number of rows affected
+    })
+    .catch(err => {
+      console.error(err);
+      throw err;
+    });
 }
 
 const deletePin = (pinDetails) => {
@@ -52,5 +69,6 @@ module.exports = {
   getPinsFromMapId,
   editPin,
   addPin,
-  deletePin
+  deletePin,
+  updatePinLocation
 }

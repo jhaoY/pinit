@@ -38,10 +38,9 @@ router.post('/new', (req, res) => {
 
 router.get('/:mapId', (req, res) => {
   const mapId = req.params.mapId;
-  mapQueries.getMaps(mapId)
-    .then(data => {
-      const mapData = Array.isArray(data) ? data[0] : data;
-      res.render('map_view', { maps: mapData });
+  mapQueries.getMapByMapId(mapId)
+    .then(([map]) => {
+      res.render('map_view', { map });
     })
     .catch(err => {
       console.error(err)
@@ -52,8 +51,7 @@ router.get('/:mapId', (req, res) => {
 router.get('/:mapId/edit', (req, res) => {
   const mapId = req.params.mapId;
   mapQueries.getMapByMapId(mapId)
-    .then(data => {
-      const map = data.rows[0];
+    .then(([map]) => {
       res.render('edit_map', { map }); //placeholder render
     })
     .catch(err => {
