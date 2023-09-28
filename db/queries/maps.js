@@ -41,7 +41,7 @@ const getMapByMapId = (id) => {
       return data.rows;
     })
     .catch(err => {
-      console.err(err);
+      console.error(err);
       throw err;
     })
 }
