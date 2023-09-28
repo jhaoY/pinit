@@ -41,9 +41,26 @@ const getMapByMapId = (id) => {
       return data.rows;
     })
     .catch(err => {
-      console.err(err);
+      console.error(err);
       throw err;
     })
+}
+
+const getLocationByMapId = (id) => {
+  const queryText = `
+  SELECT location
+  FROM maps
+  WHERE id = $1;
+  `;
+
+  return db.query(queryText, [id])
+  .then(data => {
+    return data.rows;
+  })
+  .catch(err => {
+    console.err(err);
+    throw err;
+  })
 }
 
 const getUserFavoriteMaps = (id) => {
@@ -131,6 +148,7 @@ module.exports = {
   getMaps,
   getUserMaps,
   getMapByMapId,
+  getLocationByMapId,
   getUserFavoriteMaps,
   getUserContributionMaps,
   isMapFavoritedByUser,
