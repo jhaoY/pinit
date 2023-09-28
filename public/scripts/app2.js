@@ -9,7 +9,6 @@ $(document).ready(function () {
 
   const getPinsFromMapId = () => {
     const apiPath = `/pin/api/${mapId}`
-
     fetch(apiPath)
       .then(response => response.json())
       .then(arrOfPins => {
@@ -19,7 +18,7 @@ $(document).ready(function () {
             ${pinObj.title} <br> <br>  
             ${pinObj.description} <br> <br> 
             <button type="submit" id="update-pin">Update</button> <br> <br> 
-            <button type="submit" id="delete" name="deleted">Delete</textarea><br> <br> 
+            <button type="submit" id="delete" name="deleted">Delete</button><br> <br> 
             `)
         }
       })
@@ -27,8 +26,8 @@ $(document).ready(function () {
 
   const createPin = () => {
     map.on('click', function (e) {
-      new L.marker(e.latlng, {draggable: 'true'}).addTo(map)
-        .bindPopup(`
+      const marker = new L.marker(e.latlng, {draggable: 'true'}).addTo(map)
+        marker.bindPopup(`
             <form id="pinForm">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required><br><br>
@@ -37,7 +36,7 @@ $(document).ready(function () {
             <textarea id="description" name="description"></textarea><br><br>
 
             <button type="submit" id="update-pin">Update</button><br><br>
-            <button type="submit" id="delete">Delete</textarea><br><br>
+            <button type="submit" id="delete">Delete</button><br><br>
             </form>
           `)
         .openPopup();
@@ -58,13 +57,11 @@ $(document).ready(function () {
 
   const getLocationFromDB = () => {
     const apiPath = `/map/api/${mapId}/location`
-
     fetch(apiPath)
       .then(response => response.json())
       .then(data => {
         if (data) {
           const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(data[0].location)}&format=json`;
-
           fetch(apiUrl)
             .then(response => response.json())
             .then(apiData => {
