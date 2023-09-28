@@ -15,4 +15,10 @@ router.get('/:mapId', (req, res) => {
     })
 }) 
 
+router.post('/add/:mapId', (req, res) => {
+  const pinDetails = req.body;
+  console.log(pinDetails);
+  pinQueries.addPin(pinDetails);
+})
+
 module.exports = router;
