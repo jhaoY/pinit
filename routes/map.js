@@ -21,8 +21,14 @@ router.get('/all', (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-  const templateVars = 'https://cdn.pixabay.com/photo/2020/06/05/01/28/compass-5261062_1280.jpg'
-  res.render('map_new', { coverURL: templateVars });
+  const userId = req.cookies['user_id']
+
+  if (!userId) {
+    res.redirect('../')
+  } else {
+    const templateVars = 'https://cdn.pixabay.com/photo/2020/06/05/01/28/compass-5261062_1280.jpg'
+    res.render('map_new', { coverURL: templateVars });
+  }
 });
 
 router.post('/new', (req, res) => {
