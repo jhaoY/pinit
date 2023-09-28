@@ -1,4 +1,4 @@
-INSERT INTO pins (title, description, address, maps_id, imageURL)
+INSERT INTO pins (title, description, address, map_id, imageURL)
 VALUES
 ('Central Park', 'A beautiful park in the heart of New York City', 'Central Park, New York, NY', 1, 'https://www.centralparknyc.org/images/default-source/default-album/homepage__park_view.jpg?sfvrsn=98b84d71_8'),
 ('Empire State Building', 'Iconic skyscraper in Manhattan', '350 5th Ave, New York, NY', 1, 'https://www.esbnyc.com/sites/default/files/styles/downloadable_360x240/public/2019-09/ESB%20FIREWORKS%20WEBSITE%20PAGE.jpg?itok=s2bY6SHe'),
