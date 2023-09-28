@@ -2,7 +2,7 @@ $(document).ready(function () {
   let map;
 
   const initMap = (latitude, longitude) => {
-    map = L.map('map').setView([latitude, longitude], 13);
+    map = L.map('map').setView([43.6532, -79.3832], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -11,10 +11,6 @@ $(document).ready(function () {
 
   const moveMap = (latitude, longitude) => {
     map.panTo(new L.LatLng(latitude, longitude), 13);
-  }
-
-  const createPin = (latitude, longitude) => {
-    L.marker([latitude, longitude]).addTo(map)
   }
 
   const getLocation = () => {
@@ -38,10 +34,11 @@ $(document).ready(function () {
         console.error('Error:', error);
       });
   }
+
   $('#updateLocationBtn').on('click', function () {
     getLocation();
   })
 
-  // Call function to show default location
-  initMap(43.6532, -79.3832);
+  // Call function to show location
+  initMap();
 })
