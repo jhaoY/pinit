@@ -37,9 +37,20 @@ const addPin = (pinDetails) => {
   return db.query(queryText, [pinDetails.title, pinDetails.description, pinDetails.address])
 }
 
+const deletePin = (pinDetails) => {
+  const queryText = `
+  UPDATE pins
+  SET deleted = true
+  WHERE = $1
+  RETURNING *;`
+
+  return db.query(queryText, [pinDetails.id, pinDetails.title, pinDetails.description, pinDetails.address, pinDetails.coverurl])
+
+}
+
 module.exports = {
   getPinsFromMapId,
   editPin,
-  addPin
-
+  addPin,
+  deletePin
 }
