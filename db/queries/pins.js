@@ -54,6 +54,23 @@ const updatePinLocation = (pinId, newLatLng) => {
     });
 }
 
+const updatePinDetails = (pinId, title, description, coverURL) => {
+  const queryText = `
+    UPDATE pins
+    SET title = $1, description = $2, imageURL = $3
+    WHERE id = $4;
+  `;
+
+  return db.query(queryText, [title, description, coverURL, pinId])
+    .then(data => {
+      return data.rowCount; // returns the number of rows affected
+    })
+    .catch(err => {
+      console.error(err);
+      throw err;
+    });
+}
+
 const deletePin = (pinDetails) => {
   const queryText = `
   UPDATE pins
@@ -69,6 +86,7 @@ module.exports = {
   getPinsFromMapId,
   editPin,
   addPin,
-  deletePin,
-  updatePinLocation
+  updatePinLocation,
+  updatePinDetails,
+  deletePin
 }
