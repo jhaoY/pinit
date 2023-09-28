@@ -18,6 +18,16 @@ const getPinsFromMapId = (mapId) => {
     })
 }
 
+const addPin = (pinDetails) => {
+  const queryText = `
+  INSERT INTO pins (title, description, address)
+  VALUES ($1, $2, $3);
+  `;
+
+  return db.query(queryText, [pinDetails.title, pinDetails.description, pinDetails.address])
+}
+
 module.exports = {
-  getPinsFromMapId
+  getPinsFromMapId,
+  addPin
 }
