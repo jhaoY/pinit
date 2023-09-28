@@ -16,8 +16,47 @@ $(document).ready(function () {
     map.panTo(new L.LatLng(latitude, longitude), 13);
   }
 
-  const createPin = (latitude, longitude) => {
+  const createPin = (latitude, longitude, title, description) => {
     L.marker([latitude, longitude]).addTo(map)
+    .bindPopup(`${title} <br> <br> ${description}`)
+    .openPopup();
+  }
+
+  const getPinsFromMapId = () => {
+    const apiPath = `/pin/api/${mapId}`
+
+    fetch(apiPath)
+      .then(response => response.json())
+      .then(data => {
+        generatePins(data);
+      })
+  }
+
+  const generatePins = (arrOfPins) => {
+    for (const locations of arrOfPins) {
+      getLocation(locations.address, locations.title, locations.description)
+    }
+  }
+
+  const getLocation = (location, title, description) => {
+    const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json`;
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          const latitude = parseFloat(data[0].lat);
+          const longitude = parseFloat(data[0].lon);
+
+          // Move the map with the obtained coordinates
+          createPin(latitude, longitude, title, description);
+        } else {
+          alert('Location not found!');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
 
   const getLocationFromDB = () => {
@@ -55,4 +94,5 @@ $(document).ready(function () {
   // Call function to show location
   initMap();
   getLocationFromDB();
+  getPinsFromMapId();
 })
