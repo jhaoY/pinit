@@ -14,15 +14,20 @@ $(document).ready(function () {
       .then(response => response.json())
       .then(arrOfPins => {
         for (const pinObj of arrOfPins) {
-          L.marker([pinObj.lat, pinObj.lng]).addTo(map)
-            .bindPopup(`${pinObj.title} <br> <br> ${pinObj.description}`)
+          L.marker([pinObj.lat, pinObj.lng], {draggable: 'true'}).addTo(map)
+            .bindPopup(`
+            ${pinObj.title} <br> <br>  
+            ${pinObj.description} <br> <br> 
+            <button type="submit" id="update-pin">Update</button> <br> <br> 
+            <button type="submit" id="delete" name="deleted">Delete</textarea><br> <br> 
+            `)
         }
       })
   }
 
   const createPin = () => {
     map.on('click', function (e) {
-      L.marker(e.latlng).addTo(map)
+      new L.marker(e.latlng, {draggable: 'true'}).addTo(map)
         .bindPopup(`
             <form id="pinForm">
             <label for="title">Title:</label>
@@ -30,12 +35,15 @@ $(document).ready(function () {
         
             <label for="description">Description:</label>
             <textarea id="description" name="description"></textarea><br><br>
-            <button type="submit">Update</button>
+
+            <button type="submit" id="update-pin">Update</button><br><br>
+            <button type="submit" id="delete">Delete</textarea><br><br>
             </form>
           `)
         .openPopup();
 
       $(document).on('submit', '#pinForm', (event) => {
+        event.preventDefault();
         let formData = {
           map_id: mapId,
           title: $('#title').val(),
