@@ -15,10 +15,13 @@ $(document).ready(function () {
         for (const pinObj of arrOfPins) {
           L.marker([pinObj.lat, pinObj.lng], {draggable: 'true'}).addTo(map)
             .bindPopup(`
-            ${pinObj.title} <br> <br>  
-            ${pinObj.description} <br> <br> 
-            <button type="submit" id="update-pin">Update</button> <br> <br> 
-            <button type="submit" id="delete" name="deleted">Delete</button><br> <br> 
+            <form class="updateForm" action="">
+            <input type="text" name="title" value="${pinObj.title}">
+            <textarea name="description">${pinObj.description}</textarea><br><br>
+            <input type="text" name="coverURL" value="${pinObj.imageURL || ''}"><br><br>
+            <button type="submit" class="btn-update-pin" data-pin-id="${pinObj.id}">Update</button><br><br>
+            <button type="submit" class="btn-delete" name="deleted">Delete</button><br><br>
+            </form>
             `)
         }
       })
@@ -40,18 +43,17 @@ $(document).ready(function () {
             </form>
           `)
         .openPopup();
-
-      $(document).on('submit', '#pinForm', (event) => {
-        event.preventDefault();
-        let formData = {
-          map_id: mapId,
-          title: $('#title').val(),
-          description: $('#description').val(),
-          lat: e.latlng.lat,
-          lng: e.latlng.lng,
-        }
-        $.post(`/pin/api/add/${mapId}`, formData)
-      })
+        $(document).on('submit', '#pinForm', (event) => {
+          event.preventDefault();
+          let formData = {
+            map_id: mapId,
+            title: $('#title').val(),
+            description: $('#description').val(),
+            lat: e.latlng.lat,
+            lng: e.latlng.lng,
+          }
+          $.post(`/pin/api/add/${mapId}`, formData)
+        })
     })
   }
 
@@ -81,8 +83,18 @@ $(document).ready(function () {
       });
   }
 
+  $(document).on('submit', '.updateForm', (event) => {
+    const pinId = $(event.target).find('.btn-update-pin').data('pin-id')
+    let formData = {
+      title: $(event.target).find('input[name="title"]').val(),
+      description: $(event.target).find('textarea[name="description"]').val(),
+      coverURL: $(event.target).find('input[name="coverURL"]').val()
+    };
+    $.post(`/pin/api/update/${pinId}`, formData)
+  })
+
   // Call functions
   getLocationFromDB();
   getPinsFromMapId();
-  $(document).on('click', createPin());
+  createPin()
 })
