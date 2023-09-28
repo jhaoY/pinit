@@ -10,7 +10,7 @@ $(document).ready(function () {
   }
 
   const getLocation = () => {
-    const info = document.getElementById('city').value;
+    const info = document.getElementById('location').value;
     const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(info)}&format=json`;
 
     fetch(apiUrl)
