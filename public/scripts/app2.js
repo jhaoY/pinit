@@ -16,12 +16,6 @@ $(document).ready(function () {
     map.panTo(new L.LatLng(latitude, longitude), 13);
   }
 
-  const createPin = (latitude, longitude, title, description) => {
-    L.marker([latitude, longitude]).addTo(map)
-    .bindPopup(`${title} <br> <br> ${description}`)
-    .openPopup();
-  }
-
   const getPinsFromMapId = () => {
     const apiPath = `/pin/api/${mapId}`
 
@@ -34,12 +28,12 @@ $(document).ready(function () {
 
   const generatePins = (arrOfPins) => {
     for (const locations of arrOfPins) {
-      getLocation(locations.address, locations.title, locations.description)
+      createPin(locations)
     }
   }
 
-  const getLocation = (location, title, description) => {
-    const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json`;
+  const createPin = (locObject) => {
+    const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(locObject.address)}&format=json`;
 
     fetch(apiUrl)
       .then(response => response.json())
@@ -49,7 +43,9 @@ $(document).ready(function () {
           const longitude = parseFloat(data[0].lon);
 
           // Move the map with the obtained coordinates
-          createPin(latitude, longitude, title, description);
+          L.marker([latitude, longitude]).addTo(map)
+          .bindPopup(`${locObject.title} <br> <br> ${locObject.description}`)
+          .openPopup();
         } else {
           alert('Location not found!');
         }

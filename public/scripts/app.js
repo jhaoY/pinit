@@ -9,10 +9,6 @@ $(document).ready(function () {
     }).addTo(map);
   }
 
-  const moveMap = (latitude, longitude) => {
-    map.panTo(new L.LatLng(latitude, longitude), 13);
-  }
-
   const getLocation = () => {
     const info = document.getElementById('city').value;
     const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(info)}&format=json`;
@@ -25,7 +21,7 @@ $(document).ready(function () {
           const longitude = parseFloat(data[0].lon);
 
           // Move the map with the obtained coordinates
-          moveMap(latitude, longitude);
+          map.panTo(new L.LatLng(latitude, longitude), 13);
         } else {
           alert('Location not found!');
         }
