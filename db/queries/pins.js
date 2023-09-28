@@ -78,8 +78,7 @@ const deletePin = (pinDetails) => {
   WHERE = $1
   RETURNING *;`
 
-  return db.query(queryText, [pinDetails.id, pinDetails.title, pinDetails.description, pinDetails.address, pinDetails.coverurl])
-
+  return db.query(queryText, [pinDetails.deleted])
 }
 
 module.exports = {
