@@ -18,6 +18,16 @@ const getPinsFromMapId = (mapId) => {
     })
 }
 
+const editPin = (pinDetails) => {
+  const queryText = `
+  UPDATE pins
+  SET title = $2, description = $3, address = $4, coverurl = $5
+  WHERE id = $1
+  RETURNING *;`
+
+  return db.query(queryText, [pinDetails.id, pinDetails.title, pinDetails.description, pinDetails.address, pinDetails.coverurl])
+}
+
 const addPin = (pinDetails) => {
   const queryText = `
   INSERT INTO pins (title, description, address)
@@ -29,5 +39,7 @@ const addPin = (pinDetails) => {
 
 module.exports = {
   getPinsFromMapId,
+  editPin,
   addPin
+
 }
