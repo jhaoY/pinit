@@ -3,16 +3,13 @@ const router = express.Router();
 const mapQueries = require('../db/queries/maps')
 
 router.get('/all', (req, res) => {
-  const userId = 1;
+  const userId = req.cookies['user_id'];
   // Using Promise.all to fetch all data concurrently
   Promise.all([
-    mapQueries.getUserFavoriteMaps(userId),
-    mapQueries.getUserMaps(userId),
-    mapQueries.getUserContributionMaps(userId),
     mapQueries.getMaps(userId)
   ])
-    .then(([favorites, userMaps, contributions, maps]) => {
-      res.render('maps_all', { favorites, userMaps, contributions, maps, user_id: req.cookies["user_id"] });
+    .then(([maps]) => {
+      res.render('maps_all', { maps, user_id: req.cookies["user_id"] });
     })
     .catch(err => {
       console.error(err);
