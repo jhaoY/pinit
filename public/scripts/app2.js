@@ -13,6 +13,7 @@ $(document).ready(function () {
       .then(response => response.json())
       .then(arrOfPins => {
         for (const pinObj of arrOfPins) {
+          if (pinObj.deleted === false) {
           L.marker([pinObj.lat, pinObj.lng], {draggable: 'true'}).addTo(map)
             .bindPopup(`
             <form class="updateForm" action="">
@@ -23,6 +24,7 @@ $(document).ready(function () {
             <button type="submit" class="btn-delete" name="deleted">Delete</button><br><br>
             </form>
             `)
+          }
         }
       })
   }
