@@ -1,12 +1,15 @@
 $(document).ready(function () {
+  // Gets the map_id
   const urlSegments = window.location.pathname.split('/');
   const mapId = urlSegments[urlSegments.length - 1];
 
+  // Setting default map view to Toronto
   let map = L.map('map-view').setView([43.70, -79.42], 13);;
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
+  // Generate pins from the given mapID returned from the map API
   const getPinsFromMapId = () => {
     const apiPath = `/pin/api/${mapId}`
     fetch(apiPath)
@@ -37,6 +40,7 @@ $(document).ready(function () {
       })
   }
 
+  // Creates a pin on clicking then submit to database on clicking submit
   const createPin = () => {
       map.on('click', function (e) {
         const marker = new L.marker(e.latlng, { draggable: 'true' }).addTo(map)
@@ -67,6 +71,7 @@ $(document).ready(function () {
       })
   }
 
+  // Passes the mapID location to an API which returns long/lat
   const getLocationFromDB = () => {
     const apiPath = `/map/api/${mapId}/location`
     fetch(apiPath)
@@ -93,6 +98,7 @@ $(document).ready(function () {
       });
   }
 
+  // Event handler to update a pin
   $(document).on('submit', '.updateForm', (event) => {
     const pinId = $(event.target).find('.btn-update-pin').data('pin-id')
     let formData = {
@@ -103,6 +109,7 @@ $(document).ready(function () {
     $.post(`/pin/api/update/${pinId}`, formData)
   })
 
+  // Event handler to set a pin to deleted:true
   $(document).on('submit', '.deleteForm', (event) => {
     const pinId = $(event.target).find('.btn-delete').data('pin-id')
     console.log(pinId);
