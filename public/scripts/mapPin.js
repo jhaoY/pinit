@@ -53,7 +53,7 @@ $(document).ready(function() {
             </form>
           `)
         .openPopup();
-      $(document).on('submit', '#pinForm', (event) => {
+      $(document).on('submit', '#pinForm', () => {
         let formData = {
           map_id: mapId,
           title: $('#title').val(),

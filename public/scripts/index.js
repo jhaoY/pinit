@@ -17,8 +17,6 @@ $(document).ready(function() {
 
           // Move the map with the obtained coordinates
           map.panTo(new L.LatLng(latitude, longitude), 13);
-        } else {
-          alert('Location not found!');
         }
       })
       .catch(error => {
