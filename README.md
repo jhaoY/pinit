@@ -40,3 +40,4 @@ WikiMap is an application that allows you to create maps with custom markers on 
 - Express": 4.17.1
 - Morgan": 1.9.1
 - Sass: 1.35.1
+- Eslint: 8.50.0
