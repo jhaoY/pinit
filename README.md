@@ -1,7 +1,7 @@
-LHL Node Skeleton
+Wiki-Maps
 =========
 
-## WikiMap
+## WikiMaps
 WikiMap is an application that allows you to create maps with custom markers on them. Anyone can view a map and registered users can add and edit markers on any map!
 
 ## Screenshots
