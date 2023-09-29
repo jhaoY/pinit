@@ -30,11 +30,11 @@ const editPin = (pinDetails) => {
 
 const addPin = (pinDetails) => {
   const queryText = `
-  INSERT INTO pins (title, description, lat, lng, map_id)
-  VALUES ($1, $2, $3, $4, $5);
+  INSERT INTO pins (title, description, lat, lng, map_id, imageURL)
+  VALUES ($1, $2, $3, $4, $5, $6);
   `;
 
-  return db.query(queryText, [pinDetails.title, pinDetails.description, pinDetails.lat, pinDetails.lng, pinDetails.map_id])
+  return db.query(queryText, [pinDetails.title, pinDetails.description, pinDetails.lat, pinDetails.lng, pinDetails.map_id, pinDetails.imageURL])
 }
 
 const updatePinLocation = (pinId, newLatLng) => {
