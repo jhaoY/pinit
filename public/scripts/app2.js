@@ -14,14 +14,16 @@ $(document).ready(function () {
       .then(arrOfPins => {
         for (const pinObj of arrOfPins) {
           if (pinObj.deleted === false) {
-          L.marker([pinObj.lat, pinObj.lng], {draggable: 'true'}).addTo(map)
-            .bindPopup(`
-            <form class="updateForm" action="">
+            L.marker([pinObj.lat, pinObj.lng], { draggable: 'true' }).addTo(map)
+              .bindPopup(`
+            <form class="updateForm">
             <input type="text" name="title" value="${pinObj.title}">
             <textarea name="description">${pinObj.description}</textarea><br><br>
             <input type="text" name="coverURL" value="${pinObj.imageURL || ''}"><br><br>
             <button type="submit" class="btn-update-pin" data-pin-id="${pinObj.id}">Update</button><br><br>
-            <button type="submit" class="btn-delete" name="deleted">Delete</button><br><br>
+            </form>
+            <form class="deleteForm">
+            <button type="submit" class="btn-delete" name="deleted" data-pin-id="${pinObj.id}">Delete</button><br><br>
             </form>
             `)
           }
@@ -31,8 +33,8 @@ $(document).ready(function () {
 
   const createPin = () => {
     map.on('click', function (e) {
-      const marker = new L.marker(e.latlng, {draggable: 'true'}).addTo(map)
-        marker.bindPopup(`
+      const marker = new L.marker(e.latlng, { draggable: 'true' }).addTo(map)
+      marker.bindPopup(`
             <form id="pinForm">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required><br><br>
@@ -45,17 +47,17 @@ $(document).ready(function () {
             </form>
           `)
         .openPopup();
-        $(document).on('submit', '#pinForm', (event) => {
-          event.preventDefault();
-          let formData = {
-            map_id: mapId,
-            title: $('#title').val(),
-            description: $('#description').val(),
-            lat: e.latlng.lat,
-            lng: e.latlng.lng,
-          }
-          $.post(`/pin/api/add/${mapId}`, formData)
-        })
+      $(document).on('submit', '#pinForm', (event) => {
+        event.preventDefault();
+        let formData = {
+          map_id: mapId,
+          title: $('#title').val(),
+          description: $('#description').val(),
+          lat: e.latlng.lat,
+          lng: e.latlng.lng,
+        }
+        $.post(`/pin/api/add/${mapId}`, formData)
+      })
     })
   }
 
@@ -93,6 +95,15 @@ $(document).ready(function () {
       coverURL: $(event.target).find('input[name="coverURL"]').val()
     };
     $.post(`/pin/api/update/${pinId}`, formData)
+  })
+
+  $(document).on('submit', '.deleteForm', (event) => {
+    const pinId = $(event.target).find('.btn-delete').data('pin-id')
+    console.log(pinId);
+    let formData = {
+      id: pinId.id
+    };
+    $.post(`/pin/api/delete/${pinId}`, formData)
   })
 
   // Call functions
