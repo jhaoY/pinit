@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mapQueries = require('../db/queries/maps')
+const mapQueries = require('../db/queries/maps');
 
 // Gets location of associated mapID
 router.get('/:mapId/location', (req, res) => {
@@ -10,11 +10,11 @@ router.get('/:mapId/location', (req, res) => {
       res.json(location);
     })
 
-  .catch(err => {
-    console.error(err)
-    res.status(500).send("Server error");
-  })
-})
+    .catch(err => {
+      console.error(err);
+      res.status(500).send("Server error");
+    });
+});
 
 
 module.exports = router;

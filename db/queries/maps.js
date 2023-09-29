@@ -1,4 +1,3 @@
-const { query } = require('express');
 const db = require('../connection');
 
 const getMaps = () => {
@@ -9,8 +8,8 @@ const getMaps = () => {
     .catch(err => {
       console.error(err);
       throw err;
-    })
-}
+    });
+};
 
 const getUserMaps = (id) => {
   const queryText = `
@@ -26,8 +25,8 @@ const getUserMaps = (id) => {
     .catch(err => {
       console.error(err);
       throw err;
-    })
-}
+    });
+};
 
 const getMapByMapId = (id) => {
   const queryText = `
@@ -43,8 +42,8 @@ const getMapByMapId = (id) => {
     .catch(err => {
       console.error(err);
       throw err;
-    })
-}
+    });
+};
 
 const getLocationByMapId = (id) => {
   const queryText = `
@@ -54,14 +53,14 @@ const getLocationByMapId = (id) => {
   `;
 
   return db.query(queryText, [id])
-  .then(data => {
-    return data.rows;
-  })
-  .catch(err => {
-    console.err(err);
-    throw err;
-  })
-}
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => {
+      console.err(err);
+      throw err;
+    });
+};
 
 const getUserFavoriteMaps = (id) => {
   const queryText = `
@@ -79,7 +78,7 @@ const getUserFavoriteMaps = (id) => {
     .catch(err => {
       console.error(err);
       throw err;
-    })
+    });
 };
 
 const getUserContributionMaps = (id) => {
@@ -98,7 +97,7 @@ const getUserContributionMaps = (id) => {
     .catch(err => {
       console.error(err);
       throw err;
-    })
+    });
 };
 
 const isMapFavoritedByUser = (userId, mapId) => {
@@ -126,7 +125,7 @@ const updateMap = (mapDetails) => {
     `;
 
   return db.query(queryText, [mapDetails.id, mapDetails.title, mapDetails.description, mapDetails.location]);
-}
+};
 
 const favoriteMap = (userId, mapId) => {
   const queryText = `
@@ -135,14 +134,14 @@ const favoriteMap = (userId, mapId) => {
   `;
 
   return db.query(queryText, [userId, mapId]);
-}
+};
 
 const createMap = (mapDetails) => {
   const queryText =
   `INSERT INTO maps (title, description, coverURL, location, created_by)
   VALUES ($1, $2, $3, $4, $5)`;
-  return db.query(queryText, [mapDetails.title, mapDetails.description, mapDetails.coverURL, mapDetails.location, mapDetails.created_by])
-}
+  return db.query(queryText, [mapDetails.title, mapDetails.description, mapDetails.coverURL, mapDetails.location, mapDetails.created_by]);
+};
 
 module.exports = {
   getMaps,
@@ -155,4 +154,4 @@ module.exports = {
   updateMap,
   favoriteMap,
   createMap
-}
+};

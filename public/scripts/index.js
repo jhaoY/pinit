@@ -19,16 +19,14 @@ $(document).ready(function () {
 
           // Move the map with the obtained coordinates
           map.panTo(new L.LatLng(latitude, longitude), 13);
-        } else {
-          alert('Location not found!');
         }
       })
       .catch(error => {
         console.error('Error:', error);
       });
-  }
+  };
 
-  $('#updateLocationBtn').on('click', function () {
+  $('#updateLocationBtn').on('click', function() {
     getLocation();
-  })
-})
+  });
+});

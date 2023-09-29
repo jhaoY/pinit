@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const mapQueries = require('../db/queries/maps')
+const mapQueries = require('../db/queries/maps');
 
 router.get('/', (req, res) => {
   Promise.all([
