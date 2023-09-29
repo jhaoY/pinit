@@ -56,17 +56,12 @@
         <% favorites.forEach(map=> { %>
           <li class="map-list">
             <img class="map-coverURL" src="<%= map.coverurl %>" alt="Cover image for <%= map.title %>">
-            <div class="title">
+            <a class="title" href="/map/<%= map.id %>">
               <%= map.title %>
-            </div>
+            </a>
             <p class="map-description">
               <%= map.description %>
             </p>
-            <div class="user-map-actions">
-              <a href="/map/<%= map.id %>/edit">
-                <button type="submit" class="edit-button">Edit</button>
-              </a>
-            </div>
             <% }); %>
           </li>
       </ul>
@@ -78,14 +73,11 @@
             <img class="map-coverURL" src="<%= map.coverurl %>" alt="Cover image for <%= map.title %>">
             <div class="title">
             <%= map.title %>
-          </div>
+            </div>
               <p class="map-description">
                 <%= map.description %>
               </p>
               <div class="user-map-actions">
-                <a href="/map/<%= map.id %>/edit">
-                  <button type="submit" class="edit-button">Edit</button>
-                </a>
                 <form action="/profile/<%= map.id %>/favoriteMap" method="post">
                   <input type="hidden" name="mapId" value="<%= map.id %>">
                   <button type="submit" class="favorite-button">Favorite</button>
@@ -105,9 +97,6 @@
                 <%= map.description %>
               </p>
               <div class="user-map-actions">
-                <a href="/map/<%= map.id %>/edit">
-                  <button type="submit" class="edit-button">Edit</button>
-                </a>
                 <form action="/map/favorite" method="post">
                   <input type="hidden" name="mapId" value="<%= map.id %>">
                   <button type="submit" class="favorite-button">Favorite</button>
