@@ -17,6 +17,7 @@ router.get('/all', (req, res) => {
     });
 });
 
+/* ----------- /new ----------- */
 router.get('/new', (req, res) => {
   const userId = req.cookies['user_id']
 
@@ -40,6 +41,7 @@ router.post('/new', (req, res) => {
   )
 });
 
+/* ----------- /:mapId ----------- */
 router.get('/:mapId', (req, res) => {
   const mapId = req.params.mapId;
   mapQueries.getMapByMapId(mapId)
@@ -52,6 +54,7 @@ router.get('/:mapId', (req, res) => {
     })
 })
 
+/* ----------- /mapId/edit ----------- */
 router.get('/:mapId/edit', (req, res) => {
   const mapId = req.params.mapId;
   mapQueries.getMapByMapId(mapId)

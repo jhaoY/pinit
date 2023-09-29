@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mapQueries = require('../db/queries/maps')
 
+// Gets location of associated mapID
 router.get('/:mapId/location', (req, res) => {
   const mapId = req.params.mapId;
   mapQueries.getLocationByMapId(mapId)

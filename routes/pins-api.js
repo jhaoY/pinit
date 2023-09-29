@@ -15,6 +15,7 @@ router.get('/:mapId', (req, res) => {
     })
 }) 
 
+/* ----------- /addPin ----------- */
 router.post('/add/:mapId', (req, res) => {
   if (!req.cookies["user_id"]) {
     alert("Please Login!");
@@ -24,6 +25,7 @@ router.post('/add/:mapId', (req, res) => {
   pinQueries.addPin(pinDetails);
 })
 
+/* ----------- /updatePin ----------- */
 router.post('/update/:pinId', (req, res) => {
   if (!req.cookies["user_id"]) {
     alert("Please Login!");
@@ -34,6 +36,7 @@ router.post('/update/:pinId', (req, res) => {
   pinQueries.updatePinDetails(pinId, title, description, coverURL);
 });
 
+/* ----------- /deletePin ----------- */
 router.post('/delete/:pinId', (req, res) => {
   if (!req.cookies["user_id"]) {
     alert("Please Login!");

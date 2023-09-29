@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
   }
 });
 
-
+/* ----------- /favorite ----------- */
 router.post('/:mapId/favoriteMap', (req, res) => {
   const userId = req.cookies['user_id']
   const mapId = req.body.mapId;
