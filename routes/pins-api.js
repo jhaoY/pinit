@@ -28,4 +28,10 @@ router.post('/update/:pinId', (req, res) => {
   pinQueries.updatePinDetails(pinId, title, description, coverURL);
 });
 
+router.post('/delete/:pinId', (req, res) => {
+  const pinId = req.params.pinId;
+  console.log(pinId);
+  pinQueries.deletePin(pinId);
+})
+
 module.exports = router;
