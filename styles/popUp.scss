@@ -1,0 +1,32 @@
+.leaflet-popup-content{
+
+  .updateForm {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #popUp-image-text-container {
+    display: flex;
+  }
+
+  .popUp-image-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .popUp-info {
+    align-self: center;
+    width: 100%;
+  }
+
+  .popUp-btn {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .pop-up-image {
+    height: 100%;
+    width: 100%;
+  }
+}
