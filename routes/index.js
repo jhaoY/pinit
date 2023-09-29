@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     mapQueries.getMaps()
   ])
     .then(([maps]) => {
-      res.render('landing', { maps });
+      res.render('index', { maps });
     })
     .catch(err => {
       console.error(err);
