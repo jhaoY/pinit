@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mapQueries = require('../db/queries/maps')
+const mapQueries = require('../db/queries/maps');
 
 router.get('/all', (req, res) => {
   const userId = req.cookies['user_id'];
@@ -18,26 +18,26 @@ router.get('/all', (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-  const userId = req.cookies['user_id']
+  const userId = req.cookies['user_id'];
 
   if (!userId) {
-    res.redirect('../')
+    res.redirect('../');
   } else {
-    const templateVars = 'https://cdn.pixabay.com/photo/2020/06/05/01/28/compass-5261062_1280.jpg'
+    const templateVars = 'https://cdn.pixabay.com/photo/2020/06/05/01/28/compass-5261062_1280.jpg';
     res.render('map_new', { coverURL: templateVars });
   }
 });
 
 router.post('/new', (req, res) => {
   const mapDetails = req.body;
-  const userId = req.cookies['user_id']
-  mapDetails.created_by = userId
-  console.log(mapDetails)
+  const userId = req.cookies['user_id'];
+  mapDetails.created_by = userId;
+  console.log(mapDetails);
 
   mapQueries.createMap(mapDetails)
-  .then(
-    res.redirect('/profile')
-  )
+    .then(
+      res.redirect('/profile')
+    );
 });
 
 router.get('/:mapId', (req, res) => {
@@ -47,10 +47,10 @@ router.get('/:mapId', (req, res) => {
       res.render('map_view', { map });
     })
     .catch(err => {
-      console.error(err)
+      console.error(err);
       res.status(500).send("Server error");
-    })
-})
+    });
+});
 
 router.get('/:mapId/edit', (req, res) => {
   const mapId = req.params.mapId;
@@ -59,10 +59,10 @@ router.get('/:mapId/edit', (req, res) => {
       res.render('edit_map', { map }); //placeholder render
     })
     .catch(err => {
-      console.error(err)
+      console.error(err);
       res.status(500).send("Server error");
-    })
-})
+    });
+});
 
 
 module.exports = router;

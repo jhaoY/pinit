@@ -6,27 +6,27 @@ const getPinsFromMapId = (mapId) => {
   SELECT *
   FROM pins
   WHERE map_id = $1;
-  `
+  `;
 
   return db.query(queryText, [mapId])
     .then(data => {
       return data.rows;
     })
     .catch(err => {
-      console.error(err)
+      console.error(err);
       throw err;
-    })
-}
+    });
+};
 
 const editPin = (pinDetails) => {
   const queryText = `
   UPDATE pins
   SET title = $2, description = $3, coverurl = $4
   WHERE id = $1
-  RETURNING *;`
+  RETURNING *;`;
 
-  return db.query(queryText, [pinDetails.id, pinDetails.title, pinDetails.description,pinDetails.coverurl])
-}
+  return db.query(queryText, [pinDetails.id, pinDetails.title, pinDetails.description,pinDetails.coverurl]);
+};
 
 const addPin = (pinDetails) => {
   const queryText = `
@@ -34,8 +34,8 @@ const addPin = (pinDetails) => {
   VALUES ($1, $2, $3, $4, $5, $6);
   `;
 
-  return db.query(queryText, [pinDetails.title, pinDetails.description, pinDetails.lat, pinDetails.lng, pinDetails.map_id, pinDetails.imageURL])
-}
+  return db.query(queryText, [pinDetails.title, pinDetails.description, pinDetails.lat, pinDetails.lng, pinDetails.map_id, pinDetails.imageURL]);
+};
 
 const updatePinLocation = (pinId, newLatLng) => {
   const queryText = `
@@ -52,7 +52,7 @@ const updatePinLocation = (pinId, newLatLng) => {
       console.error(err);
       throw err;
     });
-}
+};
 
 const updatePinDetails = (pinId, title, description, coverURL) => {
   const queryText = `
@@ -69,17 +69,17 @@ const updatePinDetails = (pinId, title, description, coverURL) => {
       console.error(err);
       throw err;
     });
-}
+};
 
 const deletePin = (pinId) => {
   const queryText = `
   UPDATE pins
   SET deleted = true
   WHERE id = $1
-  RETURNING *;`
+  RETURNING *;`;
 
-  return db.query(queryText, [pinId])
-}
+  return db.query(queryText, [pinId]);
+};
 
 module.exports = {
   getPinsFromMapId,
@@ -88,4 +88,4 @@ module.exports = {
   updatePinLocation,
   updatePinDetails,
   deletePin
-}
+};

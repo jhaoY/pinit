@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const mapQueries = require('../db/queries/maps')
+const mapQueries = require('../db/queries/maps');
 
 router.get('/', (req, res) => {
-  const userId = req.cookies['user_id']
+  const userId = req.cookies['user_id'];
 
   if (!userId) {
-    res.redirect('../')
+    res.redirect('../');
   } else {
     // Using Promise.all to fetch all data concurrently
     Promise.all([
@@ -26,18 +26,18 @@ router.get('/', (req, res) => {
 
 
 router.post('/:mapId/favoriteMap', (req, res) => {
-  const userId = req.cookies['user_id']
+  const userId = req.cookies['user_id'];
   const mapId = req.body.mapId;
 
   mapQueries.favoriteMap(userId, mapId)
     .then(data => {
       console.log(data);
-      res.redirect('/profile')
+      res.redirect('/profile');
     })
     .catch(err => {
-      console.error(err)
+      console.error(err);
       res.status(500).send("Server error");
-    })
-})
+    });
+});
 
 module.exports = router;
