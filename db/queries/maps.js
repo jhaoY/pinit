@@ -139,9 +139,9 @@ const favoriteMap = (userId, mapId) => {
 
 const createMap = (mapDetails) => {
   const queryText =
-  `INSERT INTO maps (title, description, coverURL, location)
-  VALUES ($1, $2, $3, $4)`;
-  return db.query(queryText, [mapDetails.title, mapDetails.description, mapDetails.coverURL, mapDetails.location])
+  `INSERT INTO maps (title, description, coverURL, location, created_by)
+  VALUES ($1, $2, $3, $4, $5)`;
+  return db.query(queryText, [mapDetails.title, mapDetails.description, mapDetails.coverURL, mapDetails.location, mapDetails.created_by])
 }
 
 module.exports = {

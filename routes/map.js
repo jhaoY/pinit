@@ -30,9 +30,13 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
   const mapDetails = req.body;
+  const userId = req.cookies['user_id']
+  mapDetails.created_by = userId
+  console.log(mapDetails)
+
   mapQueries.createMap(mapDetails)
   .then(
-    res.redirect('/map/all')
+    res.redirect('/profile')
   )
 });
 

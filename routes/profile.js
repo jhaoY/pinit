@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     Promise.all([
       mapQueries.getUserFavoriteMaps(userId),
       mapQueries.getUserMaps(userId),
-      mapQueries.getUserContributionMaps(userId)
+      mapQueries.getUserContributionMaps(userId),
     ])
       .then(([favorites, userMaps, contributions]) => {
         res.render('profile', { favorites, userMaps, contributions });

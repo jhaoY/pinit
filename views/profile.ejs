@@ -71,9 +71,9 @@
         <% userMaps.forEach(map=> { %>
           <li class="map-list">
             <img class="map-coverURL" src="<%= map.coverurl %>" alt="Cover image for <%= map.title %>">
-            <div class="title">
-            <%= map.title %>
-            </div>
+            <a class="title" href="/map/<%= map.id %>">
+              <%= map.title %>
+            </a>
               <p class="map-description">
                 <%= map.description %>
               </p>
@@ -91,13 +91,15 @@
       <ul class="contributed-maps-list">
         <% contributions.forEach(map=> { %>
           <li class="map-list">
-            <%= map.title %>
-              <img class="map-coverURL" src="<%= map.coverurl %>" alt="Cover image for <%= map.title %>">
+            <img class="map-coverURL" src="<%= map.coverurl %>" alt="Cover image for <%= map.title %>">
+            <a class="title" href="/map/<%= map.id %>">
+              <%= map.title %>
+            </a>
               <p class="map-description">
                 <%= map.description %>
               </p>
               <div class="user-map-actions">
-                <form action="/map/favorite" method="post">
+                <form action="/profile/<%= map.id %>/favoriteMap" method="post">
                   <input type="hidden" name="mapId" value="<%= map.id %>">
                   <button type="submit" class="favorite-button">Favorite</button>
                 </form>
