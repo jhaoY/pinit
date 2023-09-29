@@ -40,18 +40,4 @@ router.post('/:mapId/favoriteMap', (req, res) => {
     })
 })
 
-router.post('/:mapId/update', (req, res) => {
-  const mapId = 1;
-  const { title, description, location } = req.body;
-
-  mapQueries.updateMap({ id: mapId, title, description, location })
-    .then(data => {
-      res.redirect(`/map/${mapId}`)
-    })
-    .catch(err => {
-      console.error(err)
-      res.status(500).send("Server error");
-    })
-})
-
 module.exports = router;
