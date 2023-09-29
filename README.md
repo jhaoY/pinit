@@ -1,12 +1,12 @@
-Wiki-Maps
+Pin-It
 =========
 
-## WikiMaps
-WikiMap is an application that allows you to create maps with custom markers on them. Anyone can view a map and registered users can add and edit markers on any map!
+## Pin-It
+Pin-It is an application that allows you to create maps with custom markers on them. Anyone can view a map and registered users can add and edit markers on any map!
 
 ## Screenshots
 
-![landing page of wiki-maps](https://github.com/jhaoY/wiki-maps/blob/master/docs/Mainpage.png)
+![landing page of pin-it](https://github.com/jhaoY/wiki-maps/blob/master/docs/Mainpage.png)
 ![create map view](https://github.com/jhaoY/wiki-maps/blob/master/docs/createmap.png)
 ![map view](https://github.com/jhaoY/wiki-maps/blob/master/docs/mapWithPins.png.png)
 ![list of all maps](https://github.com/jhaoY/wiki-maps/blob/master/docs/listOfAllMaps.png)
