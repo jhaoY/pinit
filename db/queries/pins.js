@@ -71,14 +71,14 @@ const updatePinDetails = (pinId, title, description, coverURL) => {
     });
 }
 
-const deletePin = (pinDetails) => {
+const deletePin = (pinId) => {
   const queryText = `
   UPDATE pins
   SET deleted = true
-  WHERE = $1
+  WHERE id = $1
   RETURNING *;`
 
-  return db.query(queryText, [pinDetails.deleted])
+  return db.query(queryText, [pinId])
 }
 
 module.exports = {
