@@ -32,25 +32,23 @@ app.use(express.static('public'));
 app.use(cookieParser());
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 const indexRoutes = require('./routes/index');
 const profileRoutes = require('./routes/profile');
 const mapRoutes = require('./routes/map');
-const mapAPI = require('./routes/map-api')
-const pinAPI = require('./routes/pins-api')
+const mapAPI = require('./routes/map-api');
+const pinAPI = require('./routes/pins-api');
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
 app.use('/', indexRoutes);
 app.use('/profile', profileRoutes);
 app.use('/map', mapRoutes);
-app.use('/map/api', mapAPI)
-app.use('/pin/api', pinAPI)
+app.use('/map/api', mapAPI);
+app.use('/pin/api', pinAPI);
 // Note: mount other resources here, using the same pattern above
 
 app.get('/login/:id', (req, res) => {
-  res.cookie("user_id", req.params.id)
+  res.cookie("user_id", req.params.id);
   res.redirect("/");
 });
 
