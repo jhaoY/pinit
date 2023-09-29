@@ -38,8 +38,6 @@ $(document).ready(function () {
   }
 
   const createPin = () => {
-if (!!$.cookie('token')) {
-      // have cookie
       map.on('click', function (e) {
         const marker = new L.marker(e.latlng, { draggable: 'true' }).addTo(map)
         marker.bindPopup(`
@@ -67,7 +65,6 @@ if (!!$.cookie('token')) {
           $.post(`/pin/api/add/${mapId}`, formData)
         })
       })
-}
   }
 
   const getLocationFromDB = () => {

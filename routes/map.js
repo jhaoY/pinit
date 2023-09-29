@@ -31,6 +31,9 @@ router.get('/new', (req, res) => {
 router.post('/new', (req, res) => {
   const mapDetails = req.body;
   mapQueries.createMap(mapDetails)
+  .then(
+    res.redirect('/map/all')
+  )
 });
 
 router.get('/:mapId', (req, res) => {
