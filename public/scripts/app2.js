@@ -32,9 +32,11 @@ $(document).ready(function () {
   }
 
   const createPin = () => {
-    map.on('click', function (e) {
-      const marker = new L.marker(e.latlng, { draggable: 'true' }).addTo(map)
-      marker.bindPopup(`
+    if (!!$.cookie('token')) {
+      // have cookie
+      map.on('click', function (e) {
+        const marker = new L.marker(e.latlng, { draggable: 'true' }).addTo(map)
+        marker.bindPopup(`
             <form id="pinForm">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required><br><br>
@@ -46,68 +48,69 @@ $(document).ready(function () {
             <button type="submit" id="delete">Delete</button><br><br>
             </form>
           `)
-        .openPopup();
-      $(document).on('submit', '#pinForm', (event) => {
-        event.preventDefault();
-        let formData = {
-          map_id: mapId,
-          title: $('#title').val(),
-          description: $('#description').val(),
-          lat: e.latlng.lat,
-          lng: e.latlng.lng,
-        }
-        $.post(`/pin/api/add/${mapId}`, formData)
+          .openPopup();
+        $(document).on('submit', '#pinForm', (event) => {
+          event.preventDefault();
+          let formData = {
+            map_id: mapId,
+            title: $('#title').val(),
+            description: $('#description').val(),
+            lat: e.latlng.lat,
+            lng: e.latlng.lng,
+          }
+          $.post(`/pin/api/add/${mapId}`, formData)
+        })
       })
+    }
+  }
+
+    const getLocationFromDB = () => {
+      const apiPath = `/map/api/${mapId}/location`
+      fetch(apiPath)
+        .then(response => response.json())
+        .then(data => {
+          if (data) {
+            const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(data[0].location)}&format=json`;
+            fetch(apiUrl)
+              .then(response => response.json())
+              .then(apiData => {
+                if (apiData.length > 0) {
+                  const latitude = parseFloat(apiData[0].lat);
+                  const longitude = parseFloat(apiData[0].lon);
+                  map.panTo(new L.LatLng(latitude, longitude), 13);
+                }
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    $(document).on('submit', '.updateForm', (event) => {
+      const pinId = $(event.target).find('.btn-update-pin').data('pin-id')
+      let formData = {
+        title: $(event.target).find('input[name="title"]').val(),
+        description: $(event.target).find('textarea[name="description"]').val(),
+        coverURL: $(event.target).find('input[name="coverURL"]').val()
+      };
+      $.post(`/pin/api/update/${pinId}`, formData)
     })
-  }
 
-  const getLocationFromDB = () => {
-    const apiPath = `/map/api/${mapId}/location`
-    fetch(apiPath)
-      .then(response => response.json())
-      .then(data => {
-        if (data) {
-          const apiUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(data[0].location)}&format=json`;
-          fetch(apiUrl)
-            .then(response => response.json())
-            .then(apiData => {
-              if (apiData.length > 0) {
-                const latitude = parseFloat(apiData[0].lat);
-                const longitude = parseFloat(apiData[0].lon);
-                map.panTo(new L.LatLng(latitude, longitude), 13);
-              }
-            })
-            .catch(error => {
-              console.error('Error:', error);
-            });
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }
+    $(document).on('submit', '.deleteForm', (event) => {
+      const pinId = $(event.target).find('.btn-delete').data('pin-id')
+      console.log(pinId);
+      let formData = {
+        id: pinId.id
+      };
+      $.post(`/pin/api/delete/${pinId}`, formData)
+    })
 
-  $(document).on('submit', '.updateForm', (event) => {
-    const pinId = $(event.target).find('.btn-update-pin').data('pin-id')
-    let formData = {
-      title: $(event.target).find('input[name="title"]').val(),
-      description: $(event.target).find('textarea[name="description"]').val(),
-      coverURL: $(event.target).find('input[name="coverURL"]').val()
-    };
-    $.post(`/pin/api/update/${pinId}`, formData)
+    // Call functions
+    getLocationFromDB();
+    getPinsFromMapId();
+    createPin()
   })
-
-  $(document).on('submit', '.deleteForm', (event) => {
-    const pinId = $(event.target).find('.btn-delete').data('pin-id')
-    console.log(pinId);
-    let formData = {
-      id: pinId.id
-    };
-    $.post(`/pin/api/delete/${pinId}`, formData)
-  })
-
-  // Call functions
-  getLocationFromDB();
-  getPinsFromMapId();
-  createPin()
-})
