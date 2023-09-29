@@ -17,11 +17,19 @@ $(document).ready(function () {
           L.marker([pinObj.lat, pinObj.lng], {draggable: 'true'}).addTo(map)
             .bindPopup(`
             <form class="updateForm" action="">
-              <input type="text" name="title" value="${pinObj.title}">
-              <textarea name="description">${pinObj.description}</textarea><br><br>
-              <img src="${pinObj.imageurl}" alt="Photo of ${pinObj.title}"> <br><br>
-              <button type="submit" class="btn-update-pin" data-pin-id="${pinObj.id}">Update</button><br><br>
-              <button type="submit" class="btn-delete" name="deleted">Delete</button><br><br>
+            <div id="popUp-image-text-container">
+              <div class="popUp-image-container">
+                <img class="pop-up-image" src="${pinObj.imageurl}" alt="Photo of ${pinObj.title}"> <br><br>
+              </div>
+              <div class="popUp-info">
+                <input type="text" name="title" value="${pinObj.title}">
+                <textarea name="description">${pinObj.description}</textarea><br><br>
+             </div>
+            </div>
+            <div class="popUp-btn">
+              <button type="submit" class="btn-update-pin" data-pin-id="${pinObj.id}">Update</button>
+              <button type="submit" class="btn-delete" name="deleted">Delete</button>
+            </div>
             </form>
             `)
         }
